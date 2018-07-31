@@ -16,21 +16,24 @@ import store from "./../../store";
  * @returns {Promise<string>}
  */
 export async function authenticateUser(username, password) {
-  let token = "";
   const authData = {
     username,
     password
   };
 
-  try {
-    const response = await Axios.post(`${URL}/auth/authenticate`, authData);
-    const token = await response.data.payload.token;
-    store.commit("updateToken", token);
-  } catch (e) {
-    console.error(e);
+  const response = await Axios.post(`${URL}/auth/authenticate`, authData);
+
+  switch (response.status) {
+    case 400:
+      throw new Error("Username or password not provided");
+    case 401:
+      throw new Error("Incorrect username or password");
+    case 500:
+      throw new Error("Server error");
   }
 
-  return token;
+  const token = await response.data.payload.token;
+  store.commit("updateToken", token);
 }
 
 /**
@@ -45,9 +48,17 @@ export async function registerUser(username, password) {
     password: password
   };
 
-  console.log(userData);
-
   const response = await Axios.post(`${URL}/auth/register`, userData);
+
+  switch (response.status) {
+    case 400:
+      throw new Error("Username or password not provided");
+    case 401:
+      throw new Error("Incorrect username or password");
+    case 500:
+      throw new Error("Server error");
+  }
+
   const token = response.data.payload.token;
 
   if (token) {
