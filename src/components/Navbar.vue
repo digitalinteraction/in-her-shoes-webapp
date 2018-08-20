@@ -46,7 +46,10 @@
 
             p.control
               a.button.is-primary
-                span Share Story
+                //- span Share Story
+                router-link.navbar-item(
+                  to="/stories"
+                  ) Share a Story
 </template>
 
 <script>
