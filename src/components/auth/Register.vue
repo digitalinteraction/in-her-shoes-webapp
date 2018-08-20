@@ -3,32 +3,37 @@
         <div class="field">
             <label class="label">Username</label>
             <div class="control">
-                <input class="input" type="text" placeholder="e.g Alex Smith" v-model="username">
+                <input class="input is-rounded" type="text" placeholder="e.g Alex Smith" v-model="username" readonly>
             </div>
         </div>
+
+        <p class="has-text-right" @click="updateName">
+          Change
+        </p>
 
         <div class="field">
             <label class="label">Password</label>
             <div class="control">
-                <input class="input" type="password" placeholder="super-secret" v-model="password">
+                <input class="input is-rounded" type="password" placeholder="super-secret" v-model="password">
             </div>
         </div>
 
         <div class="field">
             <label class="label">Confirm Password</label>
             <div class="control">
-                <input class="input" type="password" placeholder="super-secret" v-model="confirmPassword">
+                <input class="input is-rounded" type="password" placeholder="super-secret" v-model="confirmPassword">
             </div>
         </div>
 
         <div class="control">
-            <button class="button is-primary is-fullwidth is-medium" @click="submitRegistration">Submit</button>
+            <button class="button is-primary is-fullwidth is-medium is-rounded" @click="submitRegistration">Submit</button>
         </div>
     </div>
 </template>
 
 <script>
 import { registerUser } from "../../utils/api/auth";
+import * as petname from "node-petname";
 
 export default {
   name: "Register",
@@ -51,6 +56,9 @@ export default {
         console.error(e);
         alert("Registration failed");
       }
+    },
+    updateName: function() {
+      this.username = petname(2, "-");
     }
   }
 };
