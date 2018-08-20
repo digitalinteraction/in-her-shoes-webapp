@@ -21,9 +21,14 @@
                 <div class="navbar-item">
                     <div class="field is-grouped">
                         <p class="control">
-                            <a class="button">
+                            <a class="button" v-if="!isLoggedIn">
                                 <span>
                                 Login
+                              </span>
+                            </a>
+                            <a class="button" v-else @click="logout">
+                                <span>
+                                Logout
                               </span>
                             </a>
                         </p>
@@ -41,7 +46,17 @@
 
 <script>
 export default {
-  name: "Navbar"
+  name: "Navbar",
+  methods: {
+    logout: function() {
+      localStorage.removeItem("token");
+    }
+  },
+  computed: {
+    isLoggedIn: function() {
+      return !!this.$store.getters.getToken;
+    }
+  }
 };
 </script>
 
