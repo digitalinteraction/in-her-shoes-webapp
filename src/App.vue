@@ -2,20 +2,26 @@
   div#app
     Navbar
     router-view
+    FooterBar
 </template>
 
 <script>
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Navbar.vue";
+import FooterBar from "@/components/FooterBar.vue";
 
 export default {
   name: "App",
   components: {
-    Navbar
+    Navbar,
+    FooterBar
   }
 };
 </script>
 
 <style lang="scss">
+html {
+  height: 100%;
+}
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
