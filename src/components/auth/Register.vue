@@ -60,6 +60,7 @@ export default {
       }
       try {
         await registerUser(this.username, this.password);
+        this.$router.push("/");
       } catch (e) {
         console.error(e);
         alert("Registration failed");

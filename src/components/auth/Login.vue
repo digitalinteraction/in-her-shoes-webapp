@@ -43,7 +43,13 @@ export default {
   },
   methods: {
     submitForm: async function() {
-      this.token = await authenticateUser(this.username, this.password);
+      try {
+        this.token = await authenticateUser(this.username, this.password);
+        this.$router.push("/");
+      } catch (e) {
+        console.error(e);
+        alert("Login failed");
+      }
     },
     isDisabled: function() {
       return !(this.username.length > 0 && this.password.length > 0);

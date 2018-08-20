@@ -62,6 +62,6 @@ export async function registerUser(username, password) {
   const token = response.data.payload.token;
 
   if (token) {
-    store.state.auth.commit("auth/updateToken", token);
+    store.commit("updateToken", token);
   }
 }
