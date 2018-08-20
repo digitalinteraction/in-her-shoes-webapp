@@ -69,7 +69,11 @@ export default {
       this.username = petname(2, "-");
     },
     isDisabled: function() {
-      return !(this.username.length > 0 && this.password.length > 0 && this.confirmPassword.length > 0);
+      return !(
+        this.username.length > 0 &&
+        this.password.length > 0 &&
+        this.confirmPassword.length > 0
+      );
     }
   }
 };

@@ -13,14 +13,9 @@
 </template>
 
 <script>
-
 export default {
-  name: 'footer-bar',
-  data () {
-    return {
-    }
-  }
-}
+  name: "footer-bar"
+};
 </script>
 
 <style lang="scss" scoped>

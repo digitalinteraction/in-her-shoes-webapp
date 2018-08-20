@@ -155,7 +155,7 @@
 <script>
 export default {
   name: "NewStory"
-}
+};
 </script>
 
 <style lang="scss">
