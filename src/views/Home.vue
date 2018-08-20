@@ -9,6 +9,7 @@
       <Register></Register>
     </div>
 
+    <Title></Title>
 
   </div>
 </template>
@@ -18,13 +19,15 @@
 import Login from "@/components/auth/Login.vue";
 import Register from "@/components/auth/Register.vue";
 import Navbar from "@/components/Navbar";
+import Title from "@/components/Title.vue";
 
 export default {
   name: "home",
   components: {
     Login,
     Register,
-    Navbar
+    Navbar,
+    Title
   },
   computed: {
     isLoggedIn: function() {
