@@ -19,7 +19,7 @@
         </p>
 
         <div class="control">
-            <button class="button is-primary is-medium is-fullwidth is-bold is-rounded" @click="submitForm">Submit</button>
+            <button class="button is-primary is-medium is-fullwidth is-bold is-rounded" @click="submitForm" :disabled="isDisabled()">Submit</button>
         </div>
     </div>
 </template>
@@ -41,6 +41,9 @@ export default {
   methods: {
     submitForm: async function() {
       this.token = await authenticateUser(this.username, this.password);
+    },
+    isDisabled: function() {
+      return !(this.username.length > 0 && this.password.length > 0);
     }
   }
 };

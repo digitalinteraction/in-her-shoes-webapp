@@ -26,7 +26,7 @@
         </div>
 
         <div class="control">
-            <button class="button is-primary is-fullwidth is-medium is-rounded" @click="submitRegistration">Submit</button>
+            <button class="button is-primary is-fullwidth is-medium is-rounded" @click="submitRegistration" :disabled="isDisabled()">Submit</button>
         </div>
     </div>
 </template>
@@ -59,6 +59,9 @@ export default {
     },
     updateName: function() {
       this.username = petname(2, "-");
+    },
+    isDisabled: function() {
+      return !(this.username.length > 0 && this.password.length > 0 && this.confirmPassword.length > 0);
     }
   }
 };
