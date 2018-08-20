@@ -55,11 +55,13 @@ export default {
   methods: {
     logout: function() {
       localStorage.removeItem("token");
+      this.$store.commit("removeToken");
     }
   },
   computed: {
     isLoggedIn: function() {
       return !!this.$store.getters.getToken;
+      // return !!localStorage.getItem('token');
     }
   }
 };
