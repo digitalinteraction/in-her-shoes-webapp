@@ -1,34 +1,42 @@
-<template>
-    <div class="register">
-        <div class="field">
-            <label class="label">Username</label>
-            <div class="control">
-                <input class="input is-rounded" type="text" placeholder="e.g Alex Smith" v-model="username" readonly>
-            </div>
-        </div>
+<template lang="pug">
+  div.register
+    div.field
+      label.label Username
+      div.control
+        input.input.is-rounded(
+          type="text",
+          placeholder="e.g Alex Smith",
+          v-model="username",
+          readonly
+        )
 
-        <p class="has-text-right" @click="updateName">
-          Change
-        </p>
+    p.has-text-right(
+      @click="updateName"
+    ) Change
 
-        <div class="field">
-            <label class="label">Password</label>
-            <div class="control">
-                <input class="input is-rounded" type="password" placeholder="super-secret" v-model="password">
-            </div>
-        </div>
+    div.field
+      label.label Password
+      div.control
+        input.input.is-rounded(
+          type="password",
+          placeholder="super-secret",
+          v-model="password"
+        )
 
-        <div class="field">
-            <label class="label">Confirm Password</label>
-            <div class="control">
-                <input class="input is-rounded" type="password" placeholder="super-secret" v-model="confirmPassword">
-            </div>
-        </div>
+    div.field
+      label.label Confirm Password
+      div.control
+        input.input.is-rounded(
+          type="password",
+          placeholder="super-secret",
+          v-model="confirmPassword"
+      )
 
-        <div class="control">
-            <button class="button is-primary is-fullwidth is-medium is-rounded" @click="submitRegistration" :disabled="isDisabled()">Submit</button>
-        </div>
-    </div>
+    div.control
+      button.button.is-primary.is-fullwidth.is-medium.is-rounded(
+        @click="submitRegistration",
+        :disabled="isDisabled()"
+      ) Submit
 </template>
 
 <script>

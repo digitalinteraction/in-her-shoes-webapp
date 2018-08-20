@@ -1,31 +1,33 @@
-<template lang="html">
-  <div class="auth">
-    <div class="container login-box">
-      <h1 class="title has-text-centered" v-if="isLoggingIn">Login</h1>
-      <h1 class="title has-text-centered" v-else>Register</h1>
-      <div class="container is-fluid">
-        <div class="login-form" v-if="isLoggingIn">
-          <Login></Login>
-          <div class="has-text-centered">
-            <p>
-              Don't have an account?
-            </p>
-            <button class="button is-primary is-outlined" @click="toggleForm">Sign Up</button>
-          </div>
-        </div>
+<template lang="pug">
+  div.auth
+    div.container.login-box
+      h1.title.has-text-centered(
+        v-if="isLoggingIn"
+        ) Login
+      h1.title.has-text-centered(
+        v-else
+        ) Register
 
-        <div class="register-form" v-else>
-          <Register></Register>
-          <div class="has-text-centered">
-            <p>
-              Have an account?
-            </p>
-            <button class="button is-primary is-outlined" @click="toggleForm">Login</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+      div.container.is-fluid
+        div.login-form(
+          v-if="isLoggingIn"
+          )
+          Login
+          div.has-text-centered
+            p Don't have an account?
+            button.button.is-primary.is-outlined(
+              @click="toggleForm"
+              ) Sign Up
+
+        div.register-form(
+          v-else
+          )
+          Register
+          div.has-text-centered
+            p Have an account?
+            button.button.is-primary.is-outlined(
+              @click="toggleForm"
+              ) Login
 </template>
 
 <script>

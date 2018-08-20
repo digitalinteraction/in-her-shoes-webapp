@@ -1,27 +1,30 @@
-<template>
-    <div class="login">
-        <div class="field">
-            <label class="label">Username</label>
-            <div class="control">
-                <input class="input is-rounded" type="text" v-bind:placeholder="fakeUsername" v-model="username">
-            </div>
-        </div>
+<template lang="pug">
+    div.login
+      div.field
+        label.label Username
+        div.control
+          input.input.is-rounded(
+            type="text",
+            v-bind:placeholder="fakeUsername",
+            v-model="username"
+          )
 
-        <div class="field">
-            <label class="label">Password</label>
-            <div class="control">
-                <input class="input is-rounded" type="password" placeholder="super-secret" v-model="password">
-            </div>
-        </div>
+      div.field
+        label.label Password
+        div.control
+          input.input.is-rounded(
+            type="password",
+            placeholder="super-secret"
+            v-model="password"
+          )
 
-        <p class="has-text-right">
-          Forgot password?
-        </p>
+      p.has-text-right Forgot password?
 
-        <div class="control">
-            <button class="button is-primary is-medium is-fullwidth is-bold is-rounded" @click="submitForm" :disabled="isDisabled()">Submit</button>
-        </div>
-    </div>
+      div.control
+        button.button.is-primary.is-medium.is-fullwidth.is-bold.is-rounded(
+          @click="submitForm",
+          :disabled="isDisabled()"
+        ) Submit
 </template>
 
 <script>
