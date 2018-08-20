@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <!--<img src="../assets/logo.png">-->
-    <!--<HelloWorld msg="Welcome to Your Vue.js App"/>-->
-
+    <Navbar></Navbar>
     <div v-if="!isLoggedIn">
       <h2 class="is-size-2">Login</h2>
       <Login></Login>
@@ -17,16 +15,16 @@
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue";
 import Login from "@/components/auth/Login.vue";
 import Register from "@/components/auth/Register.vue";
+import Navbar from "@/components/Navbar";
 
 export default {
   name: "home",
   components: {
-    // HelloWorld,
     Login,
-    Register
+    Register,
+    Navbar
   },
   computed: {
     isLoggedIn: function() {
