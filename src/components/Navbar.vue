@@ -22,9 +22,7 @@
                     <div class="field is-grouped">
                         <p class="control">
                             <a class="button" v-if="!isLoggedIn">
-                                <span>
-                                Login
-                              </span>
+                              <router-link to="/auth" class="navbar-item">Login</router-link>
                             </a>
                             <a class="button" v-else @click="logout">
                                 <span>

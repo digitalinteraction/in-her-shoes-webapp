@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Navbar></Navbar>
+
     <div v-if="!isLoggedIn">
       <h2 class="is-size-2">Login</h2>
       <Login></Login>
@@ -18,7 +18,7 @@
 // @ is an alias to /src
 import Login from "@/components/auth/Login.vue";
 import Register from "@/components/auth/Register.vue";
-import Navbar from "@/components/Navbar";
+
 import Title from "@/components/Title.vue";
 
 export default {
@@ -26,7 +26,6 @@ export default {
   components: {
     Login,
     Register,
-    Navbar,
     Title
   },
   computed: {

@@ -1,30 +1,28 @@
 <template>
     <div class="register">
-        <div class="container">
-            <div class="field">
-                <label class="label">Username</label>
-                <div class="control">
-                    <input class="input" type="text" placeholder="e.g Alex Smith" v-model="username">
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label">Password</label>
-                <div class="control">
-                    <input class="input" type="password" placeholder="e.g. alexsmith@gmail.com" v-model="password">
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label">Confirm Password</label>
-                <div class="control">
-                    <input class="input" type="password" placeholder="e.g. alexsmith@gmail.com" v-model="confirmPassword">
-                </div>
-            </div>
-
+        <div class="field">
+            <label class="label">Username</label>
             <div class="control">
-                <button class="button is-primary" @click="submitRegistration">Submit</button>
+                <input class="input" type="text" placeholder="e.g Alex Smith" v-model="username">
             </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+                <input class="input" type="password" placeholder="super-secret" v-model="password">
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Confirm Password</label>
+            <div class="control">
+                <input class="input" type="password" placeholder="super-secret" v-model="confirmPassword">
+            </div>
+        </div>
+
+        <div class="control">
+            <button class="button is-primary is-fullwidth is-medium" @click="submitRegistration">Submit</button>
         </div>
     </div>
 </template>
@@ -59,4 +57,8 @@ export default {
 </script>
 
 <style scoped>
+.button {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
 </style>
