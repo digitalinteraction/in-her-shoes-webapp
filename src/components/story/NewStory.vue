@@ -1,6 +1,6 @@
 <template lang="pug">
   div#new-story
-    div.container
+    div
       h1.title.has-text-right Your Story
       div.field.is-horizontal
         div.field-label.is-normal
@@ -54,7 +54,7 @@
                 placeholder="Textarea"
                 )
 
-    div#expenses.container
+    div#expenses
       h1.title.has-text-right Expenses
       div.field.is-horizontal
         div.field-label.is-normal

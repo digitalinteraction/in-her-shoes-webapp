@@ -3,42 +3,66 @@
     div.container
       div.columns
         div.column.is-one-quarter
-          ol
-            li story 1
-            li story 2
+          button#new-story-button.button.is-fullwidth.is-rounded.is-medium.is-outlined(
+            @click="toggleNewStoryView",
+            :class="{'is-primary': !addingStory}"
+          ) {{ buttonText }}
+          ul
+            li.story-item(
+              v-for="(story, idx) in stories",
+              @click="updateSelected(idx)"
+            ) {{story.title}}
 
         div#stories.column
-          <Story v-bind:story="story"></Story>
+          div.container.is-fluid
+            Story(
+              v-bind:story="stories[selectedStory]",
+              v-if="!addingStory"
+            )
+            NewStory(
+              v-else
+            )
 </template>
 
 <script>
 import Story from "@/components/story/Story.vue";
+import NewStory from "@/components/story/NewStory.vue";
+import dummyApi from "../dummy_api.json";
 export default {
   name: "Stories",
   components: {
-    Story
+    Story,
+    NewStory
   },
   data: function() {
     return {
-      story: {
-        title: "This is a test story",
-        story:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        start: "Dublin, Ireland",
-        end: "London, United Kingdom",
-        thankYouNote: "Thanks so much!",
-        messageStranger: "This is a message to a stranger",
-        expenses: {
-          procedure: 1000,
-          travel: 1000,
-          food: 1000,
-          childcare: 1000,
-          accommodation: 1000,
-          other: 1000,
-          paidDaysMissed: 5
-        }
-      }
+      /**
+       * Index of the selected story, default at 0
+       * @type {number}
+       */
+      selectedStory: 0,
+      addingStory: false,
+      buttonText: "New Story"
     };
+  },
+  computed: {
+    stories: function() {
+      return dummyApi.stories;
+    }
+  },
+  methods: {
+    /**
+     * Update view to the selected story.
+     * @param  {number} idx Index of story
+     * @return {void}     void
+     */
+    updateSelected: function(idx) {
+      this.selectedStory = idx;
+    },
+    toggleNewStoryView: function() {
+      this.addingStory = !this.addingStory;
+      this.buttonText = this.addingStory ? "Cancel" : "New Story";
+    }
   }
 };
 </script>
@@ -46,5 +70,24 @@ export default {
 <style lang="scss" scoped>
 #stories {
   margin-bottom: 2.5%;
+}
+
+.story-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 5%;
+  transition: all 0.1s ease;
+}
+
+.story-item:hover {
+  background: hsl(171, 100%, 41%);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#new-story-button {
+  margin-top: 2.5%;
+  margin-bottom: 5%;
 }
 </style>
