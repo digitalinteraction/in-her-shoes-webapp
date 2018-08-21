@@ -2,6 +2,12 @@
   div#story
     div#story-header
       h1#story-title.title {{story.title}}
+
+    div.notification.is-warning(
+      v-if="story.isBeingModerated"
+    )
+      p {{ strings.story.under_review }}
+
     p.content {{story.story}}
 
     div.columns
@@ -49,9 +55,15 @@
 </template>
 
 <script>
+import strings from "./../../strings.json";
 export default {
   name: "Story",
-  props: ["story"]
+  props: ["story"],
+  computed: {
+    strings: function() {
+      return strings;
+    }
+  }
 };
 </script>
 

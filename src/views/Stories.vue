@@ -1,6 +1,6 @@
 <template lang="pug">
   div#stories
-    div.container
+    div.container.is-fluid
       div.columns
         div.column.is-one-quarter(
           v-if="stories.length > 0"
@@ -14,7 +14,14 @@
             li.story-item(
               v-for="(story, idx) in stories",
               @click="updateSelected(idx)"
-            ) {{story.title}}
+            )
+              p {{story.title}}
+                span.tag.is-success.is-rounded(
+                  v-if="story.isPublished"
+                  ) Published
+                span.tag.is-warning.is-rounded(
+                  v-else
+                  ) Under Review
 
         div#stories.column
           div.container.is-fluid(
@@ -104,5 +111,9 @@ export default {
 
 h4 {
   margin-bottom: 2.5%;
+}
+
+.tag {
+  float: right;
 }
 </style>
