@@ -6,7 +6,7 @@
           p
             strong In Her Shoes
 
-          p The source code is licensed under the&nbsp;
+          p The source code is licensed under the
             a(href="https://opensource.org/licenses/MIT") MIT License
 
           p Copyright (c) 2018 Open Lab, Newcastle University All Rights Reserved.

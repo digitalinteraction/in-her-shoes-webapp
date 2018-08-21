@@ -1,6 +1,7 @@
 <template lang="pug">
   div.home
     Title
+    NewStory
 </template>
 
 <script>
@@ -11,7 +12,8 @@ import NewStory from "@/components/story/NewStory.vue";
 export default {
   name: "home",
   components: {
-    Title
+    Title,
+    NewStory
   }
 };
 </script>
