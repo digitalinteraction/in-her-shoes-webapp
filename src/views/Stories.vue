@@ -2,11 +2,14 @@
   div#stories
     div.container
       div.columns
-        div.column.is-one-quarter
+        div.column.is-one-quarter(
+          v-if="stories.length > 0"
+          )
           button#new-story-button.button.is-fullwidth.is-rounded.is-medium.is-outlined(
             @click="toggleNewStoryView",
             :class="{'is-primary': !addingStory}"
           ) {{ buttonText }}
+          h4.is-size-4 Your Stories
           ul
             li.story-item(
               v-for="(story, idx) in stories",
@@ -14,7 +17,9 @@
             ) {{story.title}}
 
         div#stories.column
-          div.container.is-fluid
+          div.container.is-fluid(
+            v-if="stories.length > 0"
+            )
             Story(
               v-bind:story="stories[selectedStory]",
               v-if="!addingStory"
@@ -22,6 +27,12 @@
             NewStory(
               v-else
             )
+          div.container.is-fluid(
+            v-else
+            )
+            h1.title Add a Story
+            p You haven't shared your story. Fill out the form below to post yours.
+            NewStory
 </template>
 
 <script>
@@ -89,5 +100,9 @@ export default {
 #new-story-button {
   margin-top: 2.5%;
   margin-bottom: 5%;
+}
+
+h4 {
+  margin-bottom: 2.5%;
 }
 </style>
