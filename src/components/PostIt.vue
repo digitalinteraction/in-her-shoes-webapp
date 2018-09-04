@@ -32,7 +32,6 @@ export default {
   font-size: 22px;
   border-bottom-right-radius: 60px 5px;
   display: inline-block;
-    /*float:left;*/
 }
 
 .yellow {

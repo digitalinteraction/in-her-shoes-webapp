@@ -48,7 +48,7 @@
               a.button.is-primary
                 //- span Share Story
                 router-link.navbar-item(
-                  to="/stories"
+                  to="/stories",
                   ) Share a Story
 </template>
 
@@ -70,5 +70,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+a.button.is-primary.navbar-item {
+  color: #cccccc;
+}
 </style>
