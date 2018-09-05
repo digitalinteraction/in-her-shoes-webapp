@@ -4,7 +4,9 @@
             span(
                 v-for="story in stories"
             )
-                div.rotate-left
+                div.postits(
+                    :style="{transform: getTilt()}"
+                )
                     PostIt(
 
                         colour="blue",
@@ -29,21 +31,24 @@ export default {
     stories: function() {
       return this.$store.getters.getStories;
     }
+  },
+  methods: {
+    /**
+     * Return a css rotate command
+     * @returns {string}
+     */
+    getTilt: function() {
+      const max = 5;
+      const min = -5;
+      const tilt = Math.floor(Math.random() * (max - min + 1)) + min;
+      return `rotate(${tilt}deg)`;
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.rotate-left {
-  -ms-transform: rotate(-2deg); /* IE 9 */
-  -webkit-transform: rotate(-2deg); /* Safari 3-8 */
-  transform: rotate(-2deg);
+.postits {
   display: inline-block;
-}
-
-.rotate-right {
-  -ms-transform: rotate(3deg); /* IE 9 */
-  -webkit-transform: rotate(3deg); /* Safari 3-8 */
-  transform: rotate(3deg);
 }
 </style>
