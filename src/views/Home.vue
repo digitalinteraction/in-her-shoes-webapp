@@ -1,8 +1,18 @@
 <template lang="pug">
-  div.home
-    Title
-    ThankYouNotes
-    MessageToStranger
+    div.home
+        Title
+
+        div.container
+            h2.is-size-2 Thank You Notes
+            ThankYouNotes
+
+        div.container
+            h2.is-size-2 Messages to Strangers
+            MessageToStranger
+
+        div.container
+            h2.is-size-2 Total Expenses
+            TotalExpenses
 </template>
 
 <script>
@@ -10,6 +20,7 @@
 import Title from "@/components/Title.vue";
 import ThankYouNotes from "@/components/story/ThankYouNotes.vue";
 import MessageToStranger from "@/components/story/MessageToStranger.vue";
+import TotalExpenses from "@/components/story/TotalExpenses";
 
 import { getPublicStories } from "./../utils/api/stories";
 
@@ -18,7 +29,8 @@ export default {
   components: {
     Title,
     ThankYouNotes,
-    MessageToStranger
+    MessageToStranger,
+    TotalExpenses
   },
   mounted: async function() {
     let stories = [];
@@ -32,3 +44,13 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.home {
+  margin-bottom: 2.5%;
+}
+
+.is-size-2 {
+  margin-top: 2.5%;
+}
+</style>

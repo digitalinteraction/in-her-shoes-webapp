@@ -7,5 +7,15 @@ import Axios from "axios";
  */
 export async function getPublicStories() {
   const response = await Axios.get(`${URL}/story/public`);
-  return response.data.payload;
+
+  // Attach expenses to story
+  const stories = [];
+  const rawInfo = response.data.payload;
+
+  for (let i = 0; i < rawInfo.length; i++) {
+    let story = rawInfo[i].story;
+    story.expenses = rawInfo[i].expense;
+    stories.push(story);
+  }
+  return stories;
 }

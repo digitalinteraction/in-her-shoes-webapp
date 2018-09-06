@@ -37,4 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#expenses {
+  margin-top: 1.25%;
+}
 </style>
