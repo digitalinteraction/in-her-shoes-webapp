@@ -14,6 +14,10 @@ export default {
   components: {
     Navbar,
     FooterBar
+  },
+  onIdle() {
+    alert("You have been logged out after 10 minutes of inactivity");
+    this.$store.commit("removeToken");
   }
 };
 </script>
