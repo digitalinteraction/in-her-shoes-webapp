@@ -23,7 +23,7 @@
                   v-else
                   ) Under Review
 
-        div#stories.column
+        div.column
           div.container.is-fluid(
             v-if="stories.length > 0"
             )

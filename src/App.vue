@@ -15,6 +15,10 @@ export default {
     Navbar,
     FooterBar
   },
+  /**
+   * Global inactivity handler,
+   * logout the user and give an alert.
+   */
   onIdle() {
     alert("You have been logged out after 10 minutes of inactivity");
     this.$store.commit("removeToken");

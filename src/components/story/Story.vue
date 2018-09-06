@@ -37,42 +37,20 @@
 
     h3.is-size-3 Expenses
 
-    table.table.is-bordered.is-striped.is-fullwidth.is-hoverable
-      thead
-        tr
-          th Expense
-          th.has-text-right Cost
-      tbody
-        tr
-          td Procedure
-          td.has-text-right {{story.expenses.procedure}}
-        tr
-          td Travel
-          td.has-text-right {{story.expenses.travel}}
-        tr
-          td Food
-          td.has-text-right {{story.expenses.food}}
-        tr
-          td Childcare
-          td.has-text-right {{story.expenses.childcare}}
-        tr
-          td Accommodation
-          td.has-text-right {{story.expenses.accommodation}}
-        tr
-          td Other
-          td.has-text-right {{story.expenses.other}}
-        tr
-          td Paid Days Missed
-          td.has-text-right {{story.expenses.paidDaysMissed}}
+    Expenses(
+        :expense="story.expenses"
+    )
 </template>
 
 <script>
 import strings from "./../../strings.json";
 import PostIt from "@/components/PostIt.vue";
+import Expenses from "@/components/story/Expenses.vue";
 export default {
   name: "Story",
   props: ["story"],
   components: {
+    Expenses,
     PostIt
   },
   computed: {
