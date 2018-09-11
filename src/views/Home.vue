@@ -1,6 +1,8 @@
 <template lang="pug">
     div.home
-        Title
+        Title#title
+
+        InfoBar
 
         div.container
             h2.is-size-2 Thank You Notes
@@ -20,12 +22,14 @@ import Title from "@/components/Title.vue";
 import ThankYouNotes from "@/components/story/ThankYouNotes.vue";
 import MessageToStranger from "@/components/story/MessageToStranger.vue";
 import TotalExpenses from "@/components/story/TotalExpenses";
+import InfoBar from "@/components/InfoBar";
 
 import { getPublicStories } from "./../utils/api/stories";
 
 export default {
   name: "home",
   components: {
+    InfoBar,
     Title,
     ThankYouNotes,
     MessageToStranger,
@@ -51,5 +55,9 @@ export default {
 
 .is-size-2 {
   margin-top: 2.5%;
+}
+
+#title {
+  margin-bottom: 0;
 }
 </style>

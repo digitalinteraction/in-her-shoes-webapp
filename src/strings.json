@@ -3,12 +3,16 @@
     "title": "In Her Shoes",
     "subtitle": "Everyday women around the world face significant barriers to accessing safe, legal abortion.<br/><br/>These are there stories."
   },
-	"story": {
-		"under_review":
-      "This story is under review. Our team of moderators have a responsibility to check all stories and ensure no identifying information has been disclosed, and all stories are in keeping with the aims of the site. You will receive a notification on this page if the story has been published, or if the story has been edited in anyway by our moderators."
-	},
-	"expenses": {
-		"title": "Overdue Penalty Notice",
-		"info": "Dear governments of Ireland and Northern Ireland,<br/><br/>It has come to our attention that you have been neglecting the rights of your women fo far too long. We are disappointed to see that you continue to neglect your responsibilities and have, as a result, incurred unnecessary and unfair expenses at a personal cost to all women who require safe, legal abortion.<br/><br/>Below is a breakdown of the cumulative outstanding balance owed to these women:"
-	}
+  "story": {
+    "under_review": "This story is under review. Our team of moderators have a responsibility to check all stories and ensure no identifying information has been disclosed, and all stories are in keeping with the aims of the site. You will receive a notification on this page if the story has been published, or if the story has been edited in anyway by our moderators."
+  },
+  "expenses": {
+    "title": "Overdue Penalty Notice",
+    "info": "Dear governments of Ireland and Northern Ireland,<br/><br/>It has come to our attention that you have been neglecting the rights of your women fo far too long. We are disappointed to see that you continue to neglect your responsibilities and have, as a result, incurred unnecessary and unfair expenses at a personal cost to all women who require safe, legal abortion.<br/><br/>Below is a breakdown of the cumulative outstanding balance owed to these women:"
+  },
+  "infobar": {
+    "stories": "Stories Shared",
+    "money": "Money Spent",
+    "miles": "Miles Travelled"
+  }
 }
