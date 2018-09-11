@@ -1,55 +1,56 @@
 <template lang="pug">
-  nav.navbar.is-transparent
-    div.navbar-brand
-      a.navbar-item(
-        href="/"
-      )
-        img(
-          src="https://bulma.io/images/bulma-logo.png",
-          alt="In Her Shoes",
-          width="112",
-          height="28"
-        )
-      div.navbar-burger.burger(
-        data-target="navbarExampleTransparentExample"
-      )
-        span
-        span
-        span
-        span
+    nav.navbar.is-dark
+        div.navbar-brand
+            a.navbar-item(
+            href="/"
+            ) In Her Shoes
 
-    div#navbarExampleTransparentExample.navbar-menu
-      div.navbar-start
-        router-link.navbar-item(
-          to="/"
-        ) Home
-        router-link.navbar-item(
-          to="/about"
-        ) About
+            div.navbar-burger.burger(
+            data-target="navbarExampleTransparentExample"
+            )
+                span
+                span
+                span
+                span
 
-      div.navbar-end
-        div.navbar-item
-          div.field.is-grouped
-            p.control
-              a.button(
-                v-if="!isLoggedIn"
-              )
+        div#navbarExampleTransparentExample.navbar-menu
+            div.navbar-start
                 router-link.navbar-item(
-                  to="/auth"
-                ) Login
-
-              a.button(
-                v-else,
-                @click="logout"
-              )
-                span Logout
-
-            p.control
-              a.button.is-primary
-                //- span Share Story
+                to="/"
+                ) Stories
                 router-link.navbar-item(
-                  to="/stories",
-                  ) Share a Story
+                to="/about"
+                ) About
+                router-link.navbar-item(
+                to="/stories"
+                ) Share Story
+                router-link.navbar-item(
+                to="/contact"
+                ) Contact
+                router-link.navbar-item(
+                to="/support"
+                ) Support
+
+            div.navbar-end
+                div.navbar-item
+                    span.icon.is-small
+                        i.fab.fa-facebook-f
+                div.navbar-item
+                    span.icon.is-small
+                        i.fab.fa-instagram
+                div.navbar-item
+                    span.icon.is-small
+                        i.fab.fa-twitter
+                div.navbar-item
+                    span.icon.is-small(
+                        v-if="!isLoggedIn",
+                        @click="redirectAuth"
+                    )
+                        i.fas.fa-user
+                    span(
+                        v-else,
+                        @click="logout"
+                    ) Logout
 </template>
 
 <script>
@@ -59,6 +60,9 @@ export default {
     logout: function() {
       localStorage.removeItem("token");
       this.$store.commit("removeToken");
+    },
+    redirectAuth: function() {
+      this.$router.push("auth");
     }
   },
   computed: {
@@ -73,5 +77,9 @@ export default {
 <style lang="scss" scoped>
 a.button.is-primary.navbar-item {
   color: #cccccc;
+}
+nav {
+  background-color: #2c2c2c;
+  color: white;
 }
 </style>
