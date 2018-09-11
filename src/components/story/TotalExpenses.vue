@@ -1,12 +1,23 @@
 <template lang="pug">
     div.total-expenses
-        h2.is-size-2 {{strings.title}}
+        h2.is-size-2.has-text-centered {{strings.title}}
         p(
             v-html="strings.info"
         )
         Expenses(
             :expense="totalExpenses"
         )
+        p.total-info This works out at an average cost of: &euro;{{averageCost}} per trip.
+            br
+            br
+            | Last year, approximately {{totalWomen}} Irish women travelled to the UK to obtain safe abortion. Therefore, we estimate your outstanding balance to be &euro;{{totalCost}}.
+            br
+            | This repayment is well overdue, please act now.
+            br
+            br
+            | Yours sincerely,
+            br
+            | The women of Ireland
 </template>
 
 <script>
@@ -45,10 +56,42 @@ export default {
     },
     strings: function() {
       return strings.expenses;
+    },
+    totalCost: function() {
+      return Object.values(this.totalExpenses).reduce((a, b) => a + b);
+    },
+    totalWomen: function() {
+      return this.$store.getters.getStories.length;
+    },
+    averageCost: function() {
+      return this.totalCost / this.totalWomen;
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.total-info {
+  margin-top: 2.5%;
+}
+.total-expenses {
+  background-color: #f8eff4;
+  padding: 2.5%;
+  border-radius: 15px;
+}
+.is-size-2 {
+  margin-bottom: 2.5%;
+  position: relative;
+  line-height: 1.2em;
+}
+.is-size-2:after {
+  height: 0;
+  width: 50px;
+  top: 1.2em;
+  left: 50%;
+  border-top: 2px solid #ed9913;
+  content: "";
+  position: absolute;
+  margin-top: 1.1%;
+}
 </style>

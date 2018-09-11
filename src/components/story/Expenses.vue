@@ -1,6 +1,6 @@
 <template lang="pug">
     div#expenses
-        table.table.is-bordered.is-striped.is-fullwidth.is-hoverable
+        table.table.is-fullwidth
             thead
                 tr
                     th Expense
@@ -27,17 +27,35 @@
                 tr
                     td Paid Days Missed
                     td.has-text-right {{expense.paidDaysMissed}}
+                tr
+                    td Total
+                    td.has-text-right {{total}}
 </template>
 
 <script>
 export default {
   name: "Expenses",
-  props: ["expense"]
+  props: ["expense"],
+  computed: {
+    total: function() {
+      return (
+        this.expense.procedure +
+        this.expense.travel +
+        this.expense.food +
+        this.expense.childcare +
+        this.expense.accommodation +
+        this.expense.other
+      );
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 #expenses {
   margin-top: 1.25%;
+}
+.table {
+  background-color: transparent;
 }
 </style>
