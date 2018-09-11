@@ -14,5 +14,10 @@
     "stories": "Stories Shared",
     "money": "Money Spent",
     "miles": "Miles Travelled"
+  },
+  "learn": {
+    "main": "Restricting abortion doesn't stop abortion.",
+    "bold": "It displaces it.",
+    "button": "Learn More"
   }
 }

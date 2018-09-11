@@ -4,6 +4,8 @@
 
         InfoBar
 
+        LearnMoreBar
+
         div.container
             h2.is-size-2 Thank You Notes
             ThankYouNotes
@@ -25,10 +27,12 @@ import TotalExpenses from "@/components/story/TotalExpenses";
 import InfoBar from "@/components/InfoBar";
 
 import { getPublicStories } from "./../utils/api/stories";
+import LearnMoreBar from "../components/LearnMoreBar";
 
 export default {
   name: "home",
   components: {
+    LearnMoreBar,
     InfoBar,
     Title,
     ThankYouNotes,
