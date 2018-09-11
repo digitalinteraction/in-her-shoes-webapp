@@ -11,7 +11,6 @@
             MessageToStranger
 
         div.container
-            h2.is-size-2 Total Expenses
             TotalExpenses
 </template>
 

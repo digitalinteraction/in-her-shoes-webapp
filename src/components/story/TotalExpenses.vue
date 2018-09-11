@@ -1,5 +1,9 @@
 <template lang="pug">
     div.total-expenses
+        h2.is-size-2 {{strings.title}}
+        p(
+            v-html="strings.info"
+        )
         Expenses(
             :expense="totalExpenses"
         )
@@ -7,6 +11,8 @@
 
 <script>
 import Expenses from "./Expenses";
+import strings from "./../../strings.json";
+
 export default {
   name: "TotalExpenses",
   components: { Expenses },
@@ -36,6 +42,9 @@ export default {
         }
       }
       return totalExpense;
+    },
+    strings: function() {
+      return strings.expenses;
     }
   }
 };
