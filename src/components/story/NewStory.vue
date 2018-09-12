@@ -190,23 +190,23 @@ export default {
   },
   methods: {
     submitStory: function() {
-      const storyData = {
-        story: this.story,
-        start: this.start,
-        end: this.end,
-        messageStranger: this.messageStranger,
-        thankYouNote: this.thankYouNote
-      };
-
-      const expenseData = {
-        procedure: this.procedure,
-        tavel: this.travel,
-        food: this.food,
-        childcare: this.childcare,
-        accommodation: this.accommodation,
-        other: this.other,
-        paidDaysMissed: this.paidDaysMissed
-      };
+      // const storyData = {
+      //   story: this.story,
+      //   start: this.start,
+      //   end: this.end,
+      //   messageStranger: this.messageStranger,
+      //   thankYouNote: this.thankYouNote
+      // };
+      //
+      // const expenseData = {
+      //   procedure: this.procedure,
+      //   tavel: this.travel,
+      //   food: this.food,
+      //   childcare: this.childcare,
+      //   accommodation: this.accommodation,
+      //   other: this.other,
+      //   paidDaysMissed: this.paidDaysMissed
+      // };
     }
   }
 };

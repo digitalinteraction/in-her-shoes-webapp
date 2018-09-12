@@ -8,6 +8,8 @@
 
         StoryGallery
 
+        Map
+
         div.container
             ThankYouNotes
 
@@ -29,10 +31,12 @@ import InfoBar from "@/components/InfoBar";
 import { getPublicStories } from "./../utils/api/stories";
 import LearnMoreBar from "../components/LearnMoreBar";
 import StoryGallery from "../components/StoryGallery";
+import Map from "../components/Map";
 
 export default {
   name: "home",
   components: {
+    Map,
     StoryGallery,
     LearnMoreBar,
     InfoBar,
