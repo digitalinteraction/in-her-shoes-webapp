@@ -12,7 +12,9 @@
                     div.column.is-half.has-text-right
                         button.button.is-outlined.is-inverted.is-rounded Read Stories
                     div.column.is-half.has-text-left
-                        button.button.is-outlined.is-inverted.is-rounded Share Your Story
+                        button.button.is-outlined.is-inverted.is-rounded(
+                            @click="shareStory"
+                        ) Share Your Story
 </template>
 
 <script>
@@ -23,6 +25,11 @@ export default {
   computed: {
     strings: function() {
       return strings.title;
+    }
+  },
+  methods: {
+    shareStory: function() {
+      this.$router.push("/stories");
     }
   }
 };
@@ -59,9 +66,10 @@ export default {
 .button {
   color: white;
   background: transparent;
+  transition: all 0.5s ease;
 }
 .button:hover {
   background: white;
-  color: #666666;
+  color: #ed9913;
 }
 </style>

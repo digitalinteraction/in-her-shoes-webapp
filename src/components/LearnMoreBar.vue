@@ -32,10 +32,12 @@ export default {
 .button {
   background-color: transparent;
   color: white;
+  transition: all 0.5s ease;
 }
 .button:hover {
   background-color: white;
-  color: #2c2c2c;
+  color: #ed9913;
+  font-weight: bold;
 }
 .underlined {
   text-decoration: underline;
