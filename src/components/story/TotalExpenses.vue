@@ -88,7 +88,7 @@ export default {
   height: 0;
   width: 50px;
   top: 1.2em;
-  left: 50%;
+  left: 48%;
   border-top: 2px solid #ed9913;
   content: "";
   position: absolute;

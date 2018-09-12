@@ -9,11 +9,9 @@
         StoryGallery
 
         div.container
-            h2.is-size-2 Thank You Notes
             ThankYouNotes
 
         div.container
-            h2.is-size-2 Messages to Strangers
             MessageToStranger
 
         div.container
