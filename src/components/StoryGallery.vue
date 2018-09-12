@@ -19,6 +19,11 @@ import { URL } from "../utils/api/commons";
 export default {
   name: "StoryGallery",
   computed: {
+    /**
+     * Return stories for the story gallery.
+     * Takes the first 9 stories, or the total if there less than 9 stories.
+     * Constructs an image url and appends it to the story object.
+     */
     stories: function() {
       let s = [];
       if (this.$store.getters.getStories.length < 9) {
@@ -37,6 +42,11 @@ export default {
     }
   },
   methods: {
+    /**
+     * Handle image links returning a 404 by showing a stock image
+     * TODO: update this to a static image rather than a third party.
+     * @param event
+     */
     imageURLAlt(event) {
       event.target.src =
         "https://images.unsplash.com/photo-1518685546285-85c2b201402b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=931f9b6519973a4fb773e1e55c208e16&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb";
