@@ -16,6 +16,7 @@ export async function getPublicStories() {
   for (let i = 0; i < rawInfo.length; i++) {
     let story = rawInfo[i].story;
     story.expenses = rawInfo[i].expense;
+    story.positions = rawInfo[i].positions;
     stories.push(story);
   }
   return stories;

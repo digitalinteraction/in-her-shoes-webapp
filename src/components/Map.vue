@@ -24,30 +24,36 @@ export default {
         lat: 53.322601,
         lng: -4.680631
       },
-      paths: [
-        [
-          {
-            lat: 51.8981,
-            lng: -8.476285
-          },
-          {
-            lat: 51.507373,
-            lng: -0.128482
-          }
-        ],
-        [
-          {
-            lat: 53.348285,
-            lng: -6.273325
-          },
-          {
-            lat: 53.480667,
-            lng: -2.242793
-          }
-        ]
-      ],
       google: gmapApi
     };
+  },
+  computed: {
+    stories: function() {
+      console.log(this.$store.getters.getStories);
+      return this.$store.getters.getStories;
+    },
+    paths: function() {
+      let paths = [];
+
+      for (let story of this.$store.getters.getStories) {
+        const path = [
+          {
+            lat: story.positions[0].lat,
+            lng: story.positions[0].lng
+          },
+          {
+            lat: story.positions[1].lat,
+            lng: story.positions[1].lng
+          }
+        ];
+
+        console.log(path);
+
+        paths.push(path);
+      }
+
+      return paths;
+    }
   }
 };
 </script>
