@@ -33,19 +33,14 @@
 </template>
 
 <script>
+import { getExpenseTotal } from "../../utils/expenses";
+
 export default {
   name: "Expenses",
   props: ["expense"],
   computed: {
     total: function() {
-      return (
-        this.expense.procedure +
-        this.expense.travel +
-        this.expense.food +
-        this.expense.childcare +
-        this.expense.accommodation +
-        this.expense.other
-      );
+      return getExpenseTotal(this.expense);
     }
   }
 };

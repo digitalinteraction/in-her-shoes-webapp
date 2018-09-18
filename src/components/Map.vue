@@ -29,7 +29,6 @@ export default {
   },
   computed: {
     stories: function() {
-      console.log(this.$store.getters.getStories);
       return this.$store.getters.getStories;
     },
     paths: function() {
@@ -46,8 +45,6 @@ export default {
             lng: story.positions[1].lng
           }
         ];
-
-        console.log(path);
 
         paths.push(path);
       }

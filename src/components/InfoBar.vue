@@ -5,10 +5,12 @@
             p {{strings.stories}}
             span.icon
                 i.fas.fa-book-open
+            p {{stories.length}}
         div.column.is-one-third
             p {{strings.money}}
             span.icon
                 i.fas.fa-euro-sign
+            p {{totalSpent}}
         div.column.is-one-third
             p {{strings.miles}}
             span.icon
@@ -18,6 +20,7 @@
 
 <script>
 import strings from "./../strings";
+import { getExpenseTotal } from "../utils/expenses";
 
 export default {
   name: "InfoBar",
@@ -26,7 +29,6 @@ export default {
       return strings.infobar;
     },
     stories: function() {
-      console.log("stories", this.$store.getters.getStories);
       return this.$store.getters.getStories;
     },
     paths: function() {
@@ -60,6 +62,15 @@ export default {
         return acc + this.distanceBetweenPoints(a[0], a[1]);
       }, 0);
       return Math.round(reduced * metersToMilesFactor * 2);
+    },
+    /**
+     * Total up how much money has been spent.
+     */
+    totalSpent: function() {
+      if (this.stories.length === 0) return 0;
+      return this.stories.reduce((acc, story) => {
+        return acc + getExpenseTotal(story.expenses);
+      }, 0);
     }
   },
   methods: {
