@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Auth from "./views/Auth.vue";
 import Stories from "./views/Stories.vue";
+import Admin from "./views/Admin";
 
 Vue.use(Router);
 
@@ -24,6 +25,11 @@ export default new Router({
       path: "/stories",
       name: "stories",
       component: Stories
+    },
+    {
+      path: "/admin",
+      name: "admin",
+      component: Admin
     },
     {
       path: "/about",

@@ -40,3 +40,29 @@ export async function storeStory(storyData) {
     throw new Error("Network Error");
   }
 }
+
+/**
+ * Get unpublished stories
+ * @returns {Promise<Array>}
+ */
+export async function getUnpublished() {
+  if (!store.getters.getToken) throw new Error("Must be authenticated");
+
+  const response = await Axios.get(`${URL}/admin/unpublished`, {
+    headers: { "x-access-token": store.getters.getToken }
+  });
+
+  if (response.status !== 200) throw new Error("Network Error");
+
+  const stories = [];
+  const rawInfo = response.data.payload;
+
+  console.log(rawInfo);
+
+  for (let i = 0; i < rawInfo.length; i++) {
+    let story = rawInfo[i].story;
+    story.expenses = rawInfo[i].expense;
+    stories.push(story);
+  }
+  return stories;
+}

@@ -30,6 +30,9 @@
                 router-link.navbar-item(
                 to="/support"
                 ) Support
+                router-link.navbar-item(
+                to="/admin"
+                ) Admin
 
             div.navbar-end
                 div.navbar-item
