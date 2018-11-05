@@ -106,6 +106,7 @@ export async function getUserStories() {
   const rawInfo = response.data.payload;
 
   for (let i = 0; i < rawInfo.length; i++) {
+    console.log(rawInfo[i]);
     let story = rawInfo[i].story;
     story.expenses = rawInfo[i].expense;
     story.positions = rawInfo[i].positions;

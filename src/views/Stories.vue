@@ -15,7 +15,7 @@
               v-for="(story, idx) in stories",
               @click="updateSelected(idx)"
             )
-              p {{story.title}}
+              p {{story.createdAt}}
                 span.tag.is-success.is-rounded(
                   v-if="story.isPublished"
                   ) Published
@@ -46,7 +46,6 @@
 import Story from "@/components/story/Story.vue";
 import NewStory from "@/components/story/NewStory.vue";
 import { getUserStories } from "../utils/api/stories";
-// import dummyApi from "../dummy_api.json";
 export default {
   name: "Stories",
   components: {

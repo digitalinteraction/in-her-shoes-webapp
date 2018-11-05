@@ -47,8 +47,12 @@
                 slot="body"
                 ) {{ story.messageStranger }}
 
-    h3.is-size-3 Expenses
-    div.expenses.container-fluid
+    h3.is-size-3(
+        v-if="story.expenses"
+    ) Expenses
+    div.expenses.container-fluid(
+        v-if="story.expenses"
+    )
       Expenses(
           :expense="story.expenses"
           )
@@ -71,13 +75,19 @@ export default {
       return strings;
     },
     paths: function() {
-      if (!this.story.positions) {
+      if (this.story.positions) {
         console.log(this.story);
         return [
-          {
-            lat: this.story.positions[0],
-            lng: this.story.positions[1]
-          }
+          [
+            {
+              lat: this.story.positions[0].lat,
+              lng: this.story.positions[0].lng
+            },
+            {
+              lat: this.story.positions[1].lat,
+              lng: this.story.positions[1].lng
+            }
+          ]
         ];
       }
       return [[]];
