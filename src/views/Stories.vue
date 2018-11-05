@@ -87,7 +87,6 @@ export default {
 
     try {
       stories = await getUserStories();
-      console.log(stories);
       this.$store.commit("updateUserStories", stories);
     } catch (e) {
       console.error(e);

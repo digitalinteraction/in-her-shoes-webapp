@@ -76,7 +76,6 @@ export default {
     },
     paths: function() {
       if (this.story.positions) {
-        console.log(this.story);
         return [
           [
             {

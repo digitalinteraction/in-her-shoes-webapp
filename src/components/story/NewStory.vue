@@ -211,23 +211,24 @@ export default {
       };
 
       let story;
-      let expense;
+      let response;
 
       try {
         story = await storeStory(storyData);
         expenseData.storyId = story._id;
-        expense = await storeExpense(expenseData);
+        response = await storeExpense(expenseData);
       } catch (e) {
         alert("Story could not be added");
       }
 
-      // const returnedStory = await storeStory(storyData);
-      // console.log(returnedStory);
-      //
-      // expenseData.storyId = returnedStory._id;
-      //
-      // const expense = await storeExpense(expenseData);
-      // console.log(expense);
+      if (response) {
+        let story = response.story;
+
+        story.positions = response.positions;
+        story.expenses = response.expenses;
+
+        this.$store.commit("addUserStory", story);
+      }
     }
   }
 };

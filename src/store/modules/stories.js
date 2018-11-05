@@ -36,6 +36,14 @@ const mutations = {
     state.stories.push(story);
   },
   /**
+   * Add to the users stories
+   * @param state
+   * @param story
+   */
+  addUserStory(state, story) {
+    state.userStories.push(story);
+  },
+  /**
    * Remove a story from the store
    * @param  {object[]} state Current state of the store
    * @param  {[type]} story Story to remove
