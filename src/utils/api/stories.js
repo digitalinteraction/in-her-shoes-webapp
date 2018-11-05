@@ -23,9 +23,9 @@ export async function getPublicStories() {
 }
 
 /**
- * Post a story
+ * Store a story
  * @param storyData
- * @returns {Promise<void>}
+ * @returns {Promise<string>}
  */
 export async function storeStory(storyData) {
   if (!store.getters.getToken) {
@@ -39,6 +39,29 @@ export async function storeStory(storyData) {
   if (response.status !== 200) {
     throw new Error("Network Error");
   }
+
+  return response.data.payload;
+}
+
+/**
+ * Store an expense
+ * @param expenseData
+ * @returns {Promise<*|default.computed.expenses|expenses>}
+ */
+export async function storeExpense(expenseData) {
+  if (!store.getters.getToken) {
+    throw new Error("Must be authenticated to store a story");
+  }
+
+  const response = await Axios.post(`${URL}/story/expense/store`, expenseData, {
+    headers: { "x-access-token": store.getters.getToken }
+  });
+
+  if (response.status !== 200) {
+    throw new Error("Network Error");
+  }
+
+  return response.data.payload;
 }
 
 /**
@@ -57,12 +80,37 @@ export async function getUnpublished() {
   const stories = [];
   const rawInfo = response.data.payload;
 
-  console.log(rawInfo);
-
   for (let i = 0; i < rawInfo.length; i++) {
     let story = rawInfo[i].story;
     story.expenses = rawInfo[i].expense;
     stories.push(story);
   }
+  return stories;
+}
+
+/**
+ * Get the user's stories
+ * @return {story[]} User's stories
+ */
+export async function getUserStories() {
+  if (!store.getters.getToken) throw new Error("Must be authenticated");
+
+  const response = await Axios.get(`${URL}/story/get`, {
+    headers: { "x-access-token": store.getters.getToken }
+  });
+
+  if (response.status !== 200) throw new Error("Network error");
+
+  // Attach expenses to story
+  const stories = [];
+  const rawInfo = response.data.payload;
+
+  for (let i = 0; i < rawInfo.length; i++) {
+    let story = rawInfo[i].story;
+    story.expenses = rawInfo[i].expense;
+    story.positions = rawInfo[i].positions;
+    stories.push(story);
+  }
+
   return stories;
 }

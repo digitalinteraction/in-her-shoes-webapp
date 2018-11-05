@@ -45,7 +45,8 @@
 <script>
 import Story from "@/components/story/Story.vue";
 import NewStory from "@/components/story/NewStory.vue";
-import dummyApi from "../dummy_api.json";
+import { getUserStories } from "../utils/api/stories";
+// import dummyApi from "../dummy_api.json";
 export default {
   name: "Stories",
   components: {
@@ -65,7 +66,7 @@ export default {
   },
   computed: {
     stories: function() {
-      return dummyApi.stories;
+      return this.$store.getters.getUserStories;
     }
   },
   methods: {
@@ -80,6 +81,17 @@ export default {
     toggleNewStoryView: function() {
       this.addingStory = !this.addingStory;
       this.buttonText = this.addingStory ? "Cancel" : "New Story";
+    }
+  },
+  mounted: async function() {
+    let stories;
+
+    try {
+      stories = await getUserStories();
+      console.log(stories);
+      this.$store.commit("updateUserStories", stories);
+    } catch (e) {
+      console.error(e);
     }
   }
 };

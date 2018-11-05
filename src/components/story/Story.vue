@@ -10,6 +10,18 @@
 
     p.content {{story.story}}
 
+    GmapMap.map(
+        :center="center",
+        :zoom="6",
+        map-type-id="roadmap",
+    )
+        GmapPolyline(
+            v-for="path in paths",
+            :editable="false",
+            strokeColor="#666666"
+            :path="path",
+        )
+
     div.columns
       div.column.is-half
         div.rotate-left
@@ -36,16 +48,17 @@
                 ) {{ story.messageStranger }}
 
     h3.is-size-3 Expenses
-
-    Expenses(
-        :expense="story.expenses"
-    )
+    div.expenses.container-fluid
+      Expenses(
+          :expense="story.expenses"
+          )
 </template>
 
 <script>
 import strings from "./../../strings.json";
 import PostIt from "@/components/PostIt.vue";
 import Expenses from "@/components/story/Expenses.vue";
+
 export default {
   name: "Story",
   props: ["story"],
@@ -56,7 +69,27 @@ export default {
   computed: {
     strings: function() {
       return strings;
+    },
+    paths: function() {
+      if (!this.story.positions) {
+        console.log(this.story);
+        return [
+          {
+            lat: this.story.positions[0],
+            lng: this.story.positions[1]
+          }
+        ];
+      }
+      return [[]];
     }
+  },
+  data: function() {
+    return {
+      center: {
+        lat: 53.322601,
+        lng: -4.680631
+      }
+    };
   }
 };
 </script>
@@ -110,5 +143,16 @@ export default {
 
 h3 {
   margin-bottom: 1%;
+}
+
+.expenses {
+  background-color: #f8eff4;
+  border-radius: 15px;
+  padding: 1.25%;
+}
+
+.map {
+  width: 100%;
+  height: 50vh;
 }
 </style>

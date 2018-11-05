@@ -169,6 +169,8 @@
 </template>
 
 <script>
+import { storeStory, storeExpense } from "../../utils/api/stories";
+
 export default {
   name: "NewStory",
   data: function() {
@@ -189,24 +191,43 @@ export default {
     };
   },
   methods: {
-    submitStory: function() {
-      // const storyData = {
-      //   story: this.story,
-      //   start: this.start,
-      //   end: this.end,
-      //   messageStranger: this.messageStranger,
-      //   thankYouNote: this.thankYouNote
-      // };
+    submitStory: async function() {
+      const storyData = {
+        story: this.story,
+        start: this.start,
+        end: this.end,
+        messageStranger: this.messageStranger,
+        thankYouNote: this.thankYouNote
+      };
+
+      const expenseData = {
+        procedure: this.procedure,
+        travel: this.travel,
+        food: this.food,
+        childcare: this.childcare,
+        accommodation: this.accommodation,
+        other: this.other,
+        paidDaysMissed: this.paidDaysMissed
+      };
+
+      let story;
+      let expense;
+
+      try {
+        story = await storeStory(storyData);
+        expenseData.storyId = story._id;
+        expense = await storeExpense(expenseData);
+      } catch (e) {
+        alert("Story could not be added");
+      }
+
+      // const returnedStory = await storeStory(storyData);
+      // console.log(returnedStory);
       //
-      // const expenseData = {
-      //   procedure: this.procedure,
-      //   tavel: this.travel,
-      //   food: this.food,
-      //   childcare: this.childcare,
-      //   accommodation: this.accommodation,
-      //   other: this.other,
-      //   paidDaysMissed: this.paidDaysMissed
-      // };
+      // expenseData.storyId = returnedStory._id;
+      //
+      // const expense = await storeExpense(expenseData);
+      // console.log(expense);
     }
   }
 };

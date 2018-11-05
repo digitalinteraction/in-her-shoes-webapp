@@ -6,7 +6,8 @@
  */
 
 const state = {
-  stories: []
+  stories: [],
+  userStories: []
 };
 
 const mutations = {
@@ -19,6 +20,11 @@ const mutations = {
   updateStories(state, stories) {
     if (stories) {
       state.stories = stories;
+    }
+  },
+  updateUserStories(state, stories) {
+    if (stories) {
+      state.userStories = stories;
     }
   },
   /**
@@ -73,6 +79,9 @@ const getters = {
     });
 
     if (!found) return null;
+  },
+  getUserStories: () => {
+    return state.userStories;
   }
 };
 
