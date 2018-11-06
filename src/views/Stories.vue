@@ -3,12 +3,10 @@
         div.container
             h1.is-size-1 All Stories
             a(
-                v-for="story in stories"
-                href=""
+                v-for="story in stories",
+                :href="getStoryLink(story._id)"
             )
-                figure.image(
-                    @click="linkToStory(story._id)"
-                )
+                figure.image
                     img(
                         :src="story.imageUrl",
                         @error="imageURLAlt"
@@ -26,12 +24,21 @@ export default {
     };
   },
   methods: {
+    /**
+     * Handle image 404
+     * @param event
+     */
     imageURLAlt(event) {
       event.target.src =
         "https://images.unsplash.com/photo-1518685546285-85c2b201402b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=931f9b6519973a4fb773e1e55c208e16&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb";
     },
-    linkToStory(id) {
-      this.$router.push(`story/${id}`);
+    /**
+     * Get a link to a story
+     * @param id
+     * @returns {string}
+     */
+    getStoryLink(id) {
+      return `/story/${id}`;
     }
   },
   async mounted() {
@@ -57,11 +64,16 @@ div {
   font-size: 0;
 }
 
+figure:hover {
+  cursor: pointer;
+}
+
 a {
   font-size: 16px;
   display: inline-block;
   margin-bottom: 8px;
-  width: calc(50% - 4px);
+  /*width: calc(50% - 4px);*/
+  width: 100%;
   margin-right: 8px;
 }
 
@@ -75,7 +87,7 @@ a:nth-of-type(2n) {
   }
 
   a:nth-of-type(2n) {
-    margin-right: 8px;
+    margin-right: 6px;
   }
 
   a:nth-of-type(4n) {
