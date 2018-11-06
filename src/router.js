@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import Auth from "./views/Auth.vue";
 import Stories from "./views/Stories.vue";
 import Admin from "./views/Admin";
+import ViewStory from "./views/ViewStory.vue";
 
 Vue.use(Router);
 
@@ -25,6 +26,11 @@ export default new Router({
       path: "/stories",
       name: "stories",
       component: Stories
+    },
+    {
+      path: "/story/:id",
+      name: "story",
+      component: ViewStory
     },
     {
       path: "/admin",

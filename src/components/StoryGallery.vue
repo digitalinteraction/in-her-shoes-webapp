@@ -3,11 +3,12 @@
         h2.is-size-2.has-text-centered Stories
         div.container-fluid
             div.columns.has-text-centered.is-centered.image-container
-
                 div.column.is-one-third(
                     v-for="story in stories"
                 )
-                    figure.image
+                    figure.image(
+                    @click="linkToStory(story)"
+                    )
                         img(
                             :src="story.imageUrl",
                             @error="imageURLAlt"
@@ -51,6 +52,10 @@ export default {
     imageURLAlt(event) {
       event.target.src =
         "https://images.unsplash.com/photo-1518685546285-85c2b201402b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=931f9b6519973a4fb773e1e55c208e16&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb";
+    },
+    linkToStory(story) {
+      console.log(story)
+      this.$router.push({ path: `/story/${story._id}` });
     }
   }
 };

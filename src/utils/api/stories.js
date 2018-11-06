@@ -114,3 +114,20 @@ export async function getUserStories() {
 
   return stories;
 }
+
+/**
+ * Get a remote story by id
+ * @param id
+ * @returns {Promise<string>}
+ */
+export async function getRemoteStory(id) {
+  const response = await Axios.get(`${URL}/story/get/${id}`);
+
+  if (response.status !== 200) throw new Error("Network error");
+
+  let item = response.data.payload.story;
+  item.positions = response.data.payload.positions;
+  item.expenses = response.data.payload.expenses;
+
+  return item;
+}
