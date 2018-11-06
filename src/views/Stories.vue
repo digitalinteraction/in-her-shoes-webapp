@@ -71,7 +71,6 @@ a {
   font-size: 16px;
   display: inline-block;
   margin-bottom: 8px;
-  /*width: calc(50% - 4px);*/
   width: 100%;
   margin-right: 8px;
 }

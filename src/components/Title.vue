@@ -10,7 +10,9 @@
             div.hero-foot
                 div.columns.is-mobile
                     div.column.is-half.has-text-right
-                        button.button.is-outlined.is-inverted.is-rounded Read Stories
+                        button.button.is-outlined.is-inverted.is-rounded(
+                            @click="seeStories"
+                        ) Read Stories
                     div.column.is-half.has-text-left
                         button.button.is-outlined.is-inverted.is-rounded(
                             @click="shareStory"
@@ -32,6 +34,9 @@ export default {
   },
   methods: {
     shareStory: function() {
+      this.$router.push("/user/stories");
+    },
+    seeStories: function() {
       this.$router.push("/stories");
     }
   }
