@@ -16,13 +16,13 @@
         div#navbarExampleTransparentExample.navbar-menu
             div.navbar-start
                 router-link.navbar-item(
-                to="/"
+                to="/stories"
                 ) Stories
                 router-link.navbar-item(
                 to="/about"
                 ) About
                 router-link.navbar-item(
-                to="/stories"
+                to="/user/stories"
                 ) Your Story
                 router-link.navbar-item(
                 to="/contact"

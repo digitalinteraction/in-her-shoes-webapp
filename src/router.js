@@ -5,6 +5,7 @@ import Auth from "./views/Auth.vue";
 import UserStories from "./views/UserStories.vue";
 import Admin from "./views/Admin";
 import ViewStory from "./views/ViewStory.vue";
+import Stories from "./views/Stories.vue";
 
 Vue.use(Router);
 
@@ -23,9 +24,14 @@ export default new Router({
       component: Auth
     },
     {
+      path: "/user/stories",
+      name: "userStories",
+      component: UserStories
+    },
+    {
       path: "/stories",
       name: "stories",
-      component: UserStories
+      component: Stories
     },
     {
       path: "/story/:id",

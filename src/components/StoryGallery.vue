@@ -13,6 +13,11 @@
                             :src="story.imageUrl",
                             @error="imageURLAlt"
                         )
+            div
+                p.has-text-right(
+                    @click="allStories"
+                )
+                    span.see-all See all
 </template>
 
 <script>
@@ -38,8 +43,6 @@ export default {
         s[i].imageUrl = `${URL}/media/story/${s[i]._id}`;
       }
 
-      console.log(s.length);
-
       return s;
     }
   },
@@ -53,9 +56,18 @@ export default {
       event.target.src =
         "https://images.unsplash.com/photo-1518685546285-85c2b201402b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=931f9b6519973a4fb773e1e55c208e16&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb";
     },
+    /**
+     * Link to a specific story
+     * @param story
+     */
     linkToStory(story) {
-      console.log(story);
       this.$router.push({ path: `/story/${story._id}` });
+    },
+    /**
+     * Link to all stories
+     */
+    allStories() {
+      this.$router.push("stories");
     }
   }
 };
@@ -84,5 +96,14 @@ export default {
 }
 figure {
   cursor: pointer;
+}
+.see-all {
+  margin-right: 5%;
+}
+
+.see-all:hover {
+  color: #ed9913;
+  cursor: pointer;
+  text-decoration: underline;
 }
 </style>

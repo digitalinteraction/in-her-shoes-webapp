@@ -1,5 +1,5 @@
 <template lang="pug">
-  div#stories
+  div#user-stories
     div.container.is-fluid
       div.columns
         div.column.is-one-quarter(
@@ -48,7 +48,7 @@ import NewStory from "@/components/story/NewStory.vue";
 import { getUserStories } from "../utils/api/stories";
 import * as moment from "moment";
 export default {
-  name: "Stories",
+  name: "UserStories",
   components: {
     Story,
     NewStory
