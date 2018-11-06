@@ -6,6 +6,7 @@ import UserStories from "./views/UserStories.vue";
 import Admin from "./views/Admin";
 import ViewStory from "./views/ViewStory.vue";
 import Stories from "./views/Stories.vue";
+import Messages from "./views/Messages.vue";
 
 Vue.use(Router);
 
@@ -42,6 +43,11 @@ export default new Router({
       path: "/admin",
       name: "admin",
       component: Admin
+    },
+    {
+      path: "/messages",
+      name: "messages",
+      component: Messages
     },
     {
       path: "/about",

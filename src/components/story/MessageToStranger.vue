@@ -18,6 +18,12 @@
                     :href="getLink(story._id)"
                 )
                     p.message.right.has-text-right.right {{story.messageStranger}}
+        div
+            p.has-text-right
+                a.see-all(
+                href="/messages"
+                ) See all
+                <!--span.see-all See all-->
 </template>
 
 <script>
@@ -89,5 +95,11 @@ export default {
   float: right;
   margin-right: 5%;
   color: black;
+}
+.see-all {
+  color: black;
+}
+.see-all:hover {
+  color: #ed9913;
 }
 </style>
