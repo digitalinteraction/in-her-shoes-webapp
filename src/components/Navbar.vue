@@ -45,11 +45,10 @@
                     span.icon.is-small
                         i.fab.fa-twitter
                 div.navbar-item
-                    span.icon.is-small(
+                    span(
                         v-if="!isLoggedIn",
                         @click="redirectAuth"
-                    )
-                        i.fas.fa-user
+                    ) Login
                     span(
                         v-else,
                         @click="logout"
@@ -84,5 +83,9 @@ a.button.is-primary.navbar-item {
 nav {
   background-color: #2c2c2c;
   color: white;
+}
+
+.navbar-item {
+  cursor: pointer;
 }
 </style>

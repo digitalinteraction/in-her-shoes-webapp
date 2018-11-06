@@ -15,7 +15,7 @@
               v-for="(story, idx) in stories",
               @click="updateSelected(idx)"
             )
-              p {{story.createdAt}}
+              p {{getDate(story.createdAt)}}
                 span.tag.is-success.is-rounded(
                   v-if="story.isPublished"
                   ) Published
@@ -46,6 +46,7 @@
 import Story from "@/components/story/Story.vue";
 import NewStory from "@/components/story/NewStory.vue";
 import { getUserStories } from "../utils/api/stories";
+import * as moment from "moment";
 export default {
   name: "Stories",
   components: {
@@ -80,6 +81,15 @@ export default {
     toggleNewStoryView: function() {
       this.addingStory = !this.addingStory;
       this.buttonText = this.addingStory ? "Cancel" : "New Story";
+    },
+    /**
+     * Return a formatted date string.
+     * @param date
+     * @returns {string}
+     */
+    getDate: function(date) {
+      console.log(date);
+      return moment(date, "YYYY-MM-DDTHH:mm:ss.SSSZ").format("MMMM Do, YYYY");
     }
   },
   mounted: async function() {
