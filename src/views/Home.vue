@@ -14,7 +14,7 @@
             ThankYouNotes
 
         div.container
-            MessageToStranger
+            MessageToStranger#messages
 
         div.container
             TotalExpenses
@@ -69,5 +69,9 @@ export default {
 
 #title {
   margin-bottom: 0;
+}
+
+#messages {
+  margin-bottom: 5%;
 }
 </style>

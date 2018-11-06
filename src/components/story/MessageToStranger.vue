@@ -1,31 +1,22 @@
 <template lang="pug">
     div#message-to-stanger.container
         h2.is-size-2.has-text-centered Messages to Strangers
-        div
-            span(
-            v-for="story in stories"
+        div.message-box.columns.is-mobile(
+            v-for="(story, idx) in stories"
+        )
+            div.column.is-12(
+                v-if="idx % 2 === 0"
             )
-                div.postits(:style="{transform: getTilt()}")
-                    PostIt(
-
-                    colour="yellow",
-                    :class=""
-                    )
-                        h1(
-                        slot="header"
-                        ) To a Stranger:
-                        p(
-                        slot="body"
-                        ) {{ story.messageStranger }}
+                p.message.left {{story.messageStranger}}
+            div.column.is-12(
+                v-else
+            )
+                p.message.right.has-text-right.right {{story.messageStranger}}
 </template>
 
 <script>
-import PostIt from "@/components/PostIt.vue";
 export default {
   name: "MessageToStranger",
-  components: {
-    PostIt
-  },
   computed: {
     stories: function() {
       return this.$store.getters.getStories;
@@ -47,10 +38,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.postits {
-  display: inline-block;
-}
-
 .is-size-2 {
   margin-bottom: 2.5%;
   margin-top: 2.5%;
@@ -66,5 +53,26 @@ export default {
   content: "";
   position: absolute;
   margin-top: 1.1%;
+}
+.message-container {
+  margin-bottom: 25px;
+}
+.message {
+  $margin: 5px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  margin-top: $margin;
+  margin-bottom: $margin;
+  position: relative;
+  display: inline-block;
+}
+.left {
+  color: white;
+  background-color: #186de0;
+  margin-left: 5%;
+}
+.right {
+  float: right;
+  margin-right: 5%;
 }
 </style>
