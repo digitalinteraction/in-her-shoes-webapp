@@ -7,11 +7,17 @@
             div.column.is-12(
                 v-if="idx % 2 === 0"
             )
-                p.message.left {{story.messageStranger}}
+                a(
+                    :href="getLink(story._id)"
+                )
+                    p.message.left {{story.messageStranger}}
             div.column.is-12(
                 v-else
             )
-                p.message.right.has-text-right.right {{story.messageStranger}}
+                a(
+                    :href="getLink(story._id)"
+                )
+                    p.message.right.has-text-right.right {{story.messageStranger}}
 </template>
 
 <script>
@@ -32,6 +38,14 @@ export default {
       const min = -5;
       const tilt = Math.floor(Math.random() * (max - min + 1)) + min;
       return `rotate(${tilt}deg)`;
+    },
+    /**
+     * Get a link to the story
+     * @param id
+     * @returns {string}
+     */
+    getLink: function(id) {
+      return `/story/${id}`;
     }
   }
 };
@@ -74,5 +88,6 @@ export default {
 .right {
   float: right;
   margin-right: 5%;
+  color: black;
 }
 </style>
