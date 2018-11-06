@@ -1,6 +1,6 @@
 <template lang="pug">
     div#new-story
-        div
+        div.form
             h1.title.has-text-right Your Story
             div.field.is-horizontal
                 div.field-label.is-normal
@@ -58,6 +58,24 @@
                                 placeholder="Textarea",
                                 v-model="thankYouNote"
                             )
+
+            div.field.is-horizontal
+                div.field-label.is-normal
+                    label.label Upload a Picture
+                div.field-body
+                    div.field
+                        div.control
+                            div.file.has-name.is-boxed
+                                label.file-label
+                                    input.file-input(
+                                        type="file",
+                                        name="header"
+                                    )
+                                    span.file-cta
+                                        span.file-icon
+                                            i.fas.fa-upload
+                                        span.file-label Choose a file
+                                    span.file-name.has-text-centered File not selected
 
         div#expenses
             h1.title.has-text-right Expenses
@@ -236,6 +254,9 @@ export default {
 
 <style lang="scss">
 #expenses {
+  margin-top: 5%;
+}
+.form {
   margin-top: 5%;
 }
 </style>
