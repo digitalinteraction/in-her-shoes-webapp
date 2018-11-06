@@ -54,7 +54,7 @@ export default {
         "https://images.unsplash.com/photo-1518685546285-85c2b201402b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=931f9b6519973a4fb773e1e55c208e16&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb";
     },
     linkToStory(story) {
-      console.log(story)
+      console.log(story);
       this.$router.push({ path: `/story/${story._id}` });
     }
   }
@@ -81,5 +81,8 @@ export default {
   content: "";
   position: absolute;
   margin-top: 1.1%;
+}
+figure {
+  cursor: pointer;
 }
 </style>
