@@ -2,13 +2,12 @@
     div#story-gallery
         h2.is-size-2.has-text-centered Stories
         div.container-fluid
-            div.columns.has-text-centered.is-centered.image-container
-                div.column.is-one-third(
-                    v-for="story in stories"
+            div
+                a(
+                    v-for="story in stories",
+                    :href="getStoryLink(story._id)"
                 )
-                    figure.image(
-                    @click="linkToStory(story)"
-                    )
+                    figure.image
                         img(
                             :src="story.imageUrl",
                             @error="imageURLAlt"
@@ -33,10 +32,11 @@ export default {
      */
     stories: function() {
       let s = [];
-      if (this.$store.getters.getStories.length < 9) {
+      let maxImages = 12;
+      if (this.$store.getters.getStories.length < maxImages) {
         s = this.$store.getters.getStories;
       } else {
-        s = this.$store.getters.getStories.slice(0, 9 + 1);
+        s = this.$store.getters.getStories.slice(0, maxImages + 1);
       }
 
       for (let i = 0; i < s.length; i++) {
@@ -56,17 +56,13 @@ export default {
       event.target.src = require("../assets/shoes-placeholder.png");
     },
     /**
-     * Link to a specific story
-     * @param story
-     */
-    linkToStory(story) {
-      this.$router.push({ path: `/story/${story._id}` });
-    },
-    /**
      * Link to all stories
      */
     allStories() {
       this.$router.push("stories");
+    },
+    getStoryLink(id) {
+      return `/story/${id}`;
     }
   }
 };
@@ -104,5 +100,31 @@ figure {
   color: #ed9913;
   cursor: pointer;
   text-decoration: underline;
+}
+
+a {
+  font-size: 16px;
+  display: inline-block;
+  margin-bottom: 8px;
+  width: 100%;
+  margin-right: 8px;
+}
+
+a:nth-of-type(2n) {
+  margin-right: 0;
+}
+
+@media screen and (min-width: 50em) {
+  a {
+    width: calc(25% - 6px);
+  }
+
+  a:nth-of-type(2n) {
+    margin-right: 6px;
+  }
+
+  a:nth-of-type(4n) {
+    margin-right: 0;
+  }
 }
 </style>
