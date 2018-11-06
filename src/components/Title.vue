@@ -22,6 +22,9 @@ import strings from "./../strings";
 
 export default {
   name: "Title",
+  props: {
+    msg: String
+  },
   computed: {
     strings: function() {
       return strings.title;
