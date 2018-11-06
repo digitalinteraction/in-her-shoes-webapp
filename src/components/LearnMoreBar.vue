@@ -1,11 +1,10 @@
 <template lang="pug">
    div#learn-more-bar
-        div.columns
-            div.column.is-two-thirds.has-text-centered
-                p {{strings.main}}
-                p.underlined {{strings.bold}}
-            div.column.is-one-third.has-text-centered
-                button.button.is-rounded.is-outlined {{strings.button}}
+        div.has-text-centered
+            p {{strings.main}}
+            p.underlined {{strings.bold}}
+        div.has-text-centered
+            button.button.is-rounded.is-outlined {{strings.button}}
 </template>
 
 <script>
@@ -42,5 +41,8 @@ export default {
 .underlined {
   text-decoration: underline;
   text-decoration-color: #ed9913;
+}
+.button {
+  margin-top: 2.5%;
 }
 </style>
