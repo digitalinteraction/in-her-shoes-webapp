@@ -1,61 +1,57 @@
 <template lang="pug">
-  div#story
-    div#story-header
-      h1#story-title.title {{story.title}}
+    div#story
+        div#story-header
+            h1#story-title.title {{story.title}}
 
-    div.notification.is-warning(
-      v-if="story.isBeingModerated"
-    )
-      p {{ strings.story.under_review }}
+        div.notification.is-warning(
+        v-if="story.isBeingModerated"
+        )
+            p {{ strings.story.under_review }}
 
-    p.content {{story.story}}
+        section.section
+            h2.is-size-2.has-text-centered Story
+            p.content {{story.story}}
 
-    GmapMap.map(
+        h2.is-size-2.has-text-centered Route
+        GmapMap.map(
         :center="center",
         :zoom="6",
         map-type-id="roadmap",
-    )
-        GmapPolyline(
+        )
+            GmapPolyline(
             v-for="path in paths",
             :editable="false",
             strokeColor="#666666"
             :path="path",
+            )
+
+        section.section
+            h2.is-size-2.has-text-centered Message to a Stranger
+                div.message-container
+                    p.message {{story.messageStranger}}
+
+        section.section
+            h2.is-size-2.has-text-centered Thank You To
+                div.rotate-right
+                    PostIt(
+                    colour="yellow"
+                    )
+                        h1(
+                        slot="header"
+                        ) To a Stranger:
+                        p(
+                        slot="body"
+                        ) {{ story.messageStranger }}
+
+        h3.is-size-2.has-text-centered(
+        v-if="story.expenses"
+        ) Expenses
+        div.expenses.container-fluid(
+        v-if="story.expenses"
         )
-
-    div.columns
-      div.column.is-half
-        div.rotate-left
-            PostIt(
-                colour="blue"
+            Expenses(
+            :expense="story.expenses"
             )
-                h1(
-                    slot="header"
-                ) Thank you for:
-                p(
-                    slot="body"
-                ) {{ story.thankYouNote }}
-
-      div.column.is-half
-        div.rotate-right
-            PostIt(
-            colour="yellow"
-            )
-                h1(
-                slot="header"
-                ) To a Stranger:
-                p(
-                slot="body"
-                ) {{ story.messageStranger }}
-
-    h3.is-size-3(
-        v-if="story.expenses"
-    ) Expenses
-    div.expenses.container-fluid(
-        v-if="story.expenses"
-    )
-      Expenses(
-          :expense="story.expenses"
-          )
 </template>
 
 <script>
@@ -158,10 +154,27 @@ h3 {
   background-color: #f8eff4;
   border-radius: 15px;
   padding: 1.25%;
+  margin-bottom: 5%;
 }
 
 .map {
   width: 100%;
   height: 50vh;
+}
+
+.message {
+  $margin: 5px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  margin-top: $margin;
+  margin-bottom: $margin;
+  position: relative;
+  display: inline-block;
+  color: white;
+  background-color: #186de0;
+}
+
+.message-stranger {
+  margin-top: 5%;
 }
 </style>
