@@ -23,7 +23,7 @@
                 ) About
                 router-link.navbar-item(
                 to="/stories"
-                ) Share Story
+                ) Your Story
                 router-link.navbar-item(
                 to="/contact"
                 ) Contact
