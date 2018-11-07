@@ -69,13 +69,16 @@
                                 label.file-label
                                     input.file-input(
                                         type="file",
-                                        name="header"
+                                        name="header",
+                                        @change="assignFile($event)"
                                     )
                                     span.file-cta
                                         span.file-icon
                                             i.fas.fa-upload
                                         span.file-label Choose a file
-                                    span.file-name.has-text-centered File not selected
+                                    span.file-name.has-text-centered(
+                                        v-if="hasFile"
+                                    ) {{file.name}}
 
         div#expenses
             h1.title.has-text-right Expenses
@@ -188,6 +191,7 @@
 
 <script>
 import { storeStory, storeExpense } from "../../utils/api/stories";
+import { uploadPicture } from "../../utils/api/media";
 
 export default {
   name: "NewStory",
@@ -205,7 +209,9 @@ export default {
       accommodation: 0,
       other: 0,
       paidDaysMissed: 0,
-      currency: ""
+      currency: "",
+      file: null,
+      hasFile: false
     };
   },
   methods: {
@@ -240,12 +246,28 @@ export default {
       }
 
       if (response) {
+        try {
+          await uploadPicture(this.file, response.story._id);
+        } catch (e) {
+          console.error(e);
+          alert("Image could not be uploaded");
+        }
+
         let story = response.story;
 
         story.positions = response.positions;
         story.expenses = response.expenses;
 
         this.$store.commit("addUserStory", story);
+      }
+    },
+    assignFile: function() {
+      const file = event.target.files[0];
+      if (/image/.test(file.type)) {
+        this.file = file;
+        this.hasFile = true;
+      } else {
+        alert("File must be an image");
       }
     }
   }
