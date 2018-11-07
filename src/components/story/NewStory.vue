@@ -246,11 +246,13 @@ export default {
       }
 
       if (response) {
-        try {
-          await uploadPicture(this.file, response.story._id);
-        } catch (e) {
-          console.error(e);
-          alert("Image could not be uploaded");
+        if (this.file) {
+          try {
+            await uploadPicture(this.file, response.story._id);
+          } catch (e) {
+            console.error(e);
+            alert("Image could not be uploaded");
+          }
         }
 
         let story = response.story;
