@@ -131,3 +131,14 @@ export async function getRemoteStory(id) {
 
   return item;
 }
+
+/**
+ * Delete a story
+ * @param id
+ * @returns {Promise<void>}
+ */
+export async function deleteStory(id) {
+  return await Axios.delete(`${URL}/story/destroy/${id}`, {
+    headers: { "x-access-token": store.getters.getToken }
+  });
+}

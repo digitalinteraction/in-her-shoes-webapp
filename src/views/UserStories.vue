@@ -25,18 +25,19 @@
 
         div.column
           div.container.is-fluid(
-            v-if="stories.length > 0"
+                v-if="stories.length > 0"
             )
             Story(
-              v-bind:story="stories[selectedStory]",
-              v-if="!addingStory"
+                v-bind:story="stories[selectedStory]",
+                v-if="!addingStory",
+                v-on:story-deleted="storyDeleted"
             )
             NewStory(
                 v-else,
                 v-on:submitted="submitted($event)"
             )
           div.container.is-fluid(
-            v-else
+                v-else
             )
             h1.title Add a Story
             p You haven't shared your story. Fill out the form below to post yours.
@@ -107,6 +108,9 @@ export default {
           this.selectedStory = i;
         }
       }
+    },
+    storyDeleted: function() {
+      this.updateSelected(0);
     }
   },
   mounted: async function() {

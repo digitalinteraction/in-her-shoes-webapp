@@ -46,19 +46,19 @@ const mutations = {
   /**
    * Remove a story from the store
    * @param  {object[]} state Current state of the store
-   * @param  {[type]} story Story to remove
+   * @param id
    * @return {void}
    */
-  removeStory(state, story) {
+  removeUserStory(state, id) {
     let index = -1;
-    state.stories.forEach((userStory, idx) => {
-      if (userStory._id === story._id) {
+    state.userStories.forEach((userStory, idx) => {
+      if (userStory._id === id) {
         index = idx;
       }
     });
 
     if (index >= 0) {
-      state.stories.splice(index, 1);
+      state.userStories.splice(index, 1);
     }
   }
 };

@@ -1,7 +1,15 @@
 <template lang="pug">
     div#story
         div#story-header
-            h1#story-title.title {{story.title}}
+            p#story-title.title
+                span.icon.story-icon(
+                    @click="editStory"
+                )
+                    i.fas.fa-edit
+                span.icon.story-icon(
+                    @click="deleteStory"
+                )
+                    i.fas.fa-trash-alt
 
         div.notification.is-warning(
         v-if="story.isBeingModerated"
@@ -58,10 +66,11 @@
 import strings from "./../../strings.json";
 import PostIt from "@/components/PostIt.vue";
 import Expenses from "@/components/story/Expenses.vue";
+import { deleteStory } from "../../utils/api/stories";
 
 export default {
   name: "Story",
-  props: ["story"],
+  props: ["story", "isOwner"],
   components: {
     Expenses,
     PostIt
@@ -95,6 +104,27 @@ export default {
         lng: -4.680631
       }
     };
+  },
+  methods: {
+    editStory: function() {},
+    deleteStory: async function() {
+      const confirmed = confirm(
+        "Are you sure you wish to delete your story? Your story cannot be recovered once deleted."
+      );
+
+      if (!confirmed) return;
+
+      try {
+        await deleteStory(this.story._id);
+      } catch (e) {
+        console.error(e);
+        alert("Story could not be deleted");
+        return;
+      }
+
+      this.$emit("story-deleted");
+      this.$store.commit("removeUserStory", this.story._id);
+    }
   }
 };
 </script>
@@ -107,7 +137,7 @@ export default {
   min-height: 50vh;
   position: relative;
   padding: 10px;
-  margin-bottom: 5%;
+  /*margin-bottom: 5%;*/
 
   &:before {
     content: "";
@@ -130,7 +160,7 @@ export default {
   bottom: 0;
   left: 0;
   margin-bottom: 10px;
-  margin-left: 10px;
+  margin-left: 40px;
   color: #ffffff;
 }
 
@@ -176,5 +206,17 @@ h3 {
 
 .message-stranger {
   margin-top: 5%;
+}
+.fa-edit {
+  margin-right: 30px;
+}
+
+.story-icon {
+  transition: all 0.5s ease;
+}
+
+.story-icon:hover {
+  cursor: pointer;
+  color: #ed9913;
 }
 </style>
