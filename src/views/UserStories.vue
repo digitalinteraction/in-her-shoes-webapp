@@ -32,14 +32,17 @@
               v-if="!addingStory"
             )
             NewStory(
-              v-else
+                v-else,
+                v-on:submitted="submitted($event)"
             )
           div.container.is-fluid(
             v-else
             )
             h1.title Add a Story
             p You haven't shared your story. Fill out the form below to post yours.
-            NewStory
+            NewStory(
+                v-on:submitted="submitted($event)"
+            )
 </template>
 
 <script>
@@ -88,8 +91,22 @@ export default {
      * @returns {string}
      */
     getDate: function(date) {
-      console.log(date);
       return moment(date, "YYYY-MM-DDTHH:mm:ss.SSSZ").format("MMMM Do, YYYY");
+    },
+    /**
+     * Handle a form submission event:
+     *  Change the view to show the new story
+     * @param id
+     */
+    submitted: function(id) {
+      this.buttonText = "New Story";
+      this.addingStory = false;
+
+      for (let i = 0; i < this.$store.getters.getUserStories.length; i++) {
+        if (this.$store.getters.getUserStories[i]._id === id) {
+          this.selectedStory = i;
+        }
+      }
     }
   },
   mounted: async function() {

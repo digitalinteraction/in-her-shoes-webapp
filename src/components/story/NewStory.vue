@@ -261,6 +261,8 @@ export default {
         story.expenses = response.expenses;
 
         this.$store.commit("addUserStory", story);
+        console.log("Emitting");
+        this.$emit("submitted", story._id);
       }
     },
     assignFile: function() {
