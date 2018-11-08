@@ -28,14 +28,6 @@ const mutations = {
     }
   },
   /**
-   * Add a story to the store
-   * @param {object} state Current state of the store
-   * @param {object} story Story to add
-   */
-  addStory(state, story) {
-    state.stories.push(story);
-  },
-  /**
    * Add to the users stories
    * @param state
    * @param story
@@ -72,21 +64,6 @@ const getters = {
    */
   getStories: () => {
     return state.stories;
-  },
-  /**
-   * Get story by id
-   * @param  {string} id Id of story
-   * @return {object?}    A single story
-   */
-  getStory: id => {
-    let found = false;
-    state.stories.forEach(story => {
-      if (id === story._id) {
-        return story;
-      }
-    });
-
-    if (!found) return null;
   },
   getUserStories: () => {
     return state.userStories;

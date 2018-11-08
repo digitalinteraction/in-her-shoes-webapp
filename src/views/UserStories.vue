@@ -30,7 +30,8 @@
             Story(
                 v-bind:story="stories[selectedStory]",
                 v-if="!addingStory",
-                v-on:story-deleted="storyDeleted"
+                v-on:story-deleted="storyDeleted",
+                isOwner="true"
             )
             NewStory(
                 v-else,

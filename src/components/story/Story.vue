@@ -1,7 +1,9 @@
 <template lang="pug">
     div#story
         div#story-header
-            p#story-title.title
+            p(
+                v-if="isOwner"
+            )#story-title.title
                 span.icon.story-icon(
                     @click="editStory"
                 )
