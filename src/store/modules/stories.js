@@ -67,6 +67,9 @@ const getters = {
   },
   getUserStories: () => {
     return state.userStories;
+  },
+  getUserStory: (state) => (id) => {
+    return state.userStories.find(story => story._id === id);
   }
 };
 

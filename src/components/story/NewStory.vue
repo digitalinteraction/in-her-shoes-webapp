@@ -185,16 +185,26 @@
                     div.field
                         div.control
                             button.button.is-primary(
+                                v-if="!isEditing",
                                 @click="submitStory"
                             ) Submit Story
+                            button.button.is-warning(
+                                v-else,
+                                @click="editStory"
+                            ) Edit Story
 </template>
 
 <script>
-import { storeStory, storeExpense } from "../../utils/api/stories";
+import {
+  storeStory,
+  storeExpense,
+  editRemoteStory
+} from "../../utils/api/stories";
 import { uploadPicture } from "../../utils/api/media";
 
 export default {
   name: "NewStory",
+  props: ["storyToEdit", "isEditing"],
   data: function() {
     return {
       story: "",
@@ -272,6 +282,77 @@ export default {
         this.hasFile = true;
       } else {
         alert("File must be an image");
+      }
+    },
+    /**
+     * Edit a story remotely
+     * @returns {Promise<void>}
+     */
+    editStory: async function() {
+      // Check has id and is editing
+      if (!this.isEditing && !this.storyToEdit) return;
+
+      /*
+      Construct payload for story data and expenses data
+      */
+      const storyData = {
+        story: this.story,
+        start: this.start,
+        end: this.end,
+        messageStranger: this.messageStranger,
+        thankYouNote: this.thankYouNote
+      };
+
+      const expenseData = {
+        procedure: this.procedure,
+        travel: this.travel,
+        food: this.food,
+        childcare: this.childcare,
+        accommodation: this.accommodation,
+        other: this.other,
+        paidDaysMissed: this.paidDaysMissed,
+        storyId: this.storyToEdit._id
+      };
+
+      let story;
+      let expense;
+
+      try {
+        story = await editRemoteStory(this.storyToEdit._id, storyData);
+        expenseData.storyId = story._id;
+        expense = await editRemoteStory(expenseData);
+      } catch (e) {
+        alert("Story could not be updated");
+        return;
+      }
+
+      story.expenses = expense;
+
+      this.$store.commit("updateUserStory", story);
+    }
+  },
+
+  /**
+   * If in editing mode, assign values to model.
+   * @returns {Promise<void>}
+   */
+  async mounted() {
+    if (this.isEditing && this.storyToEdit) {
+      this.story = this.storyToEdit.story;
+      this.start = this.storyToEdit.start;
+      this.end = this.storyToEdit.end;
+      this.messageStranger = this.storyToEdit.messageStranger;
+      this.thankYouNote = this.storyToEdit.thankYouNote;
+
+      if (this.storyToEdit.expenses) {
+        this.procedure = this.storyToEdit.expenses.procedure;
+        this.travel = this.storyToEdit.expenses.travel;
+        this.food = this.storyToEdit.expenses.food;
+        this.childcare = this.storyToEdit.expenses.childcare;
+        this.accommodation = this.storyToEdit.expenses.accommodation;
+        this.other = this.storyToEdit.expenses.other;
+        this.paidDaysMissed = this.storyToEdit.expenses.paidDaysMissed;
+        this.currency = this.storyToEdit.expenses.currency;
       }
     }
   }

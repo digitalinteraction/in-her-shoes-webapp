@@ -29,13 +29,20 @@
             )
             Story(
                 v-bind:story="stories[selectedStory]",
-                v-if="!addingStory",
+                v-if="!addingStory && !isEditing",
                 v-on:story-deleted="storyDeleted",
-                isOwner="true"
+                isOwner="true",
+                v-on:edit-story="editStory($event)"
             )
             NewStory(
-                v-else,
+                v-else-if="addingStory && !editing",
                 v-on:submitted="submitted($event)"
+            )
+            NewStory(
+                v-else-if="isEditing",
+                v-on:submitted="submitted($event)",
+                :storyToEdit="storyToEdit",
+                :isEditing="isEditing"
             )
           div.container.is-fluid(
                 v-else
@@ -66,7 +73,9 @@ export default {
        */
       selectedStory: 0,
       addingStory: false,
-      buttonText: "New Story"
+      buttonText: "New Story",
+      isEditing: false,
+      storyToEdit: null
     };
   },
   computed: {
@@ -110,8 +119,18 @@ export default {
         }
       }
     },
+    /**
+     * Reset the view on story deletion
+     */
     storyDeleted: function() {
       this.updateSelected(0);
+    },
+    /**
+     *
+     */
+    editStory: function(id) {
+      this.storyToEdit = this.$store.getters.getUserStory(id);
+      this.isEditing = true;
     }
   },
   mounted: async function() {

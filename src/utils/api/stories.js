@@ -142,3 +142,38 @@ export async function deleteStory(id) {
     headers: { "x-access-token": store.getters.getToken }
   });
 }
+
+/**
+ * Edit a story remotely.
+ * @param id
+ * @param storyData
+ * @returns {Promise<null|*|string>}
+ */
+export async function editRemoteStory(id, storyData) {
+  const response = await Axios.post(`${URL}/story/edit`, storyData, {
+    headers: { "x-access-token": store.getters.getToken }
+  });
+
+  if (response.status !== 200) throw new Error("Network error");
+
+  let item = response.data.payload.story;
+  item.positions = response.data.payload.positions;
+  item.expenses = response.data.payload.expenses;
+
+  return item;
+}
+
+/**
+ * Edit a response remotely.
+ * @param expense
+ * @returns {Promise<any>}
+ */
+export async function editRemoteExpense(expense) {
+  const response = await Axios.post(`${URL}/story/expense/edit`, expense, {
+    headers: { "x-access-token": store.getters.getToken }
+  });
+
+  if (response.status !== 200) throw new Error("Network error");
+
+  return response.data.payload;
+}

@@ -5,7 +5,7 @@
                 v-if="isOwner"
             )#story-title.title
                 span.icon.story-icon(
-                    @click="editStory"
+                    @click="$emit('edit-story', story._id)"
                 )
                     i.fas.fa-edit
                 span.icon.story-icon(
