@@ -1,4 +1,5 @@
-# webapp
+# In Her Shoes Webapp
+> Web application for the in her shoes project.
 
 ## Project setup
 ```
